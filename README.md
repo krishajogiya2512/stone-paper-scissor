@@ -26,10 +26,11 @@ This project allows the user to play against the computer, shows the computer's 
 
 ## 📂 Project Structure
 
+```
 stone-paper-scissor/
 │── index.html
 │── style.css
 │── index.js
 │── README.md
-
+```
 ---
