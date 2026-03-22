@@ -77,3 +77,36 @@ function playGame(playerMove) {
     checkRound();
 
 }
+
+function checkRound() {
+
+    if (playerScore === 2) {
+
+        msg.innerText = "🎉 Player Wins Round";
+
+        resetGame();
+    }
+
+    else if (computerScore === 2) {
+
+        msg.innerText = "💻 Computer Wins Round";
+
+        resetGame();
+    }
+
+    else if (roundCount === 3) {
+
+        if (playerScore > computerScore) {
+            msg.innerText = "🎉 Player Wins Round";
+        }
+        else if (computerScore > playerScore) {
+            msg.innerText = "💻 Computer Wins Round";
+        }
+        else {
+            msg.innerText = "Tie Round";
+        }
+
+        resetGame();
+    }
+
+}
