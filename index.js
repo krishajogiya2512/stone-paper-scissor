@@ -110,3 +110,31 @@ function checkRound() {
     }
 
 }
+
+function resetGame() {
+
+    setTimeout(() => {
+
+        playerScore = 0;
+        computerScore = 0;
+        roundCount = 0;
+
+        historyText = "";
+        historyBox.innerText = "";
+
+        msg.innerText = "Choose your move";
+
+    }, 2000);
+}
+
+rockBtn.addEventListener("click", function () {
+    playGame("Rock");
+});
+
+paperBtn.addEventListener("click", function () {
+    playGame("Paper");
+});
+
+scissorBtn.addEventListener("click", function () {
+    playGame("Scissor");
+});
