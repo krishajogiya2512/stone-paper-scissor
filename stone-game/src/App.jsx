@@ -4,10 +4,11 @@ import "./index.css";
 function App() {
 
   const [msg, setMsg] = useState("Choose your move");
-  const [history, setHistory] = useState("");
+  const [history, setHistory] = useState([]);
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [roundCount, setRoundCount] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   function getComputerMove() {
     let randomNumber = Math.random();
@@ -19,13 +20,11 @@ function App() {
 
   function playGame(playerMove) {
 
+    if (gameOver) return;
+
     let computerMove = getComputerMove();
 
-    let newRound = roundCount + 1;
-    setRoundCount(newRound);
-
     let result = "";
-
     let newPlayerScore = playerScore;
     let newComputerScore = computerScore;
 
@@ -47,45 +46,54 @@ function App() {
       setComputerScore(newComputerScore);
     }
 
-    let newHistory =
-      history +
-      `You: ${playerMove} | Computer: ${computerMove} → ${result}\n`;
+    let newHistory = [
+      ...history,
+      `You: ${playerMove} | Computer: ${computerMove} → ${result}`
+    ];
 
     setHistory(newHistory);
 
+    let newRound = roundCount + 1;
+    setRoundCount(newRound);
+
     setMsg(`Player: ${newPlayerScore}  Computer: ${newComputerScore}`);
 
-    checkRound(newPlayerScore, newComputerScore, newRound, newHistory);
+    checkWinner(newPlayerScore, newComputerScore, newRound);
   }
 
-  function checkRound(pScore, cScore, rCount, historyData) {
+  function checkWinner(pScore, cScore, rounds) {
 
     if (pScore === 2) {
-      setMsg("Player Wins Round");
-      resetGame();
+      setMsg("Player Wins the Game!");
+      setGameOver(true);
     }
     else if (cScore === 2) {
-      setMsg("Computer Wins Round");
-      resetGame();
+      setMsg("Computer Wins the Game!");
+      setGameOver(true);
     }
-    else if (rCount === 3) {
+    else if (rounds === 3) {
 
-      if (pScore > cScore) setMsg("Player Wins Round");
-      else if (cScore > pScore) setMsg("Computer Wins Round");
-      else setMsg("Tie Round");
+      if (pScore > cScore) {
+        setMsg("Player Wins the Game!");
+      }
+      else if (cScore > pScore) {
+        setMsg("Computer Wins the Game!");
+      }
+      else {
+        setMsg("It's a Tie Game!");
+      }
 
-      resetGame();
+      setGameOver(true);
     }
   }
 
   function resetGame() {
-    setTimeout(() => {
-      setPlayerScore(0);
-      setComputerScore(0);
-      setRoundCount(0);
-      setHistory("");
-      setMsg("Choose your move");
-    }, 2000);
+    setMsg("Choose your move");
+    setHistory([]);
+    setPlayerScore(0);
+    setComputerScore(0);
+    setRoundCount(0);
+    setGameOver(false);
   }
 
   return (
@@ -101,7 +109,18 @@ function App() {
 
       <div className="result">
         <p>{msg}</p>
-        <p style={{ whiteSpace: "pre-line" }}>{history}</p>
+
+        <p style={{ whiteSpace: "pre-line" }}>
+          {history.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </p>
+
+        {gameOver && (
+          <button onClick={resetGame} style={{ marginTop: "20px" }}>
+            Reset Game
+          </button>
+        )}
       </div>
 
     </div>
