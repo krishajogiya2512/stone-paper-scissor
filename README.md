@@ -1,36 +1,73 @@
-# ✊✋✌️ Stone Paper Scissor Game
+# Stone Paper Scissor Game (React)
 
-A simple and interactive **Stone Paper Scissor** game built using **HTML, CSS, and JavaScript**.
-This project allows the user to play against the computer, shows the computer's move, and keeps track of the score.
+A modern and interactive **Stone Paper Scissor game** built using **React, CSS, and JavaScript**.
+This project allows users to play against the computer with real-time score tracking, move history, and best-of-3 round system.
 
 ---
 
-## 🚀 Features
+## Features
 
 * Play against computer
-* Shows computer's move
-* Score tracking (User vs Computer)
-* Clean UI design
-* Responsive layout
-* Beginner to Intermediate JavaScript logic
+* Random computer move generation
+* Score tracking (Player vs Computer)
+* Best of 3 round system
+* Move history tracking
+* Auto reset after each round
+* Manual reset button
+* Winner announcement (Player / Computer / Tie)
+* Built using React Hooks (`useState`)
+* Clean and responsive UI
 
 ---
 
-## 🛠️ Technologies Used
+## Game Logic
 
-* HTML
-* CSS
+* Each round consists of **maximum 3 games**
+* First to win **2 games wins the round**
+* If both have same score after 3 games → **Tie**
+* After result → game resets automatically
+
+---
+
+## Technologies Used
+
+* React
 * JavaScript
+* CSS
+* HTML (via React)
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
-```
-stone-paper-scissor/
-│── index.html
-│── style.css
-│── index.js
+stone-game/
+│── src/
+│   ├── App.jsx        
+│   ├── main.jsx       
+│   ├── index.css      
+│── index.html         
+│── package.json
 │── README.md
-```
+
 ---
+
+## Screenshots
+
+* Game UI with buttons
+* Move history
+* Score tracking
+* Winner display
+
+---
+
+## Future Improvements
+
+* Streak tracker
+* Better UI for history (cards/timeline)
+* Scoreboard till 5 wins
+* Sound effects
+* Dark/Light mode toggle
+
+---
+
+
